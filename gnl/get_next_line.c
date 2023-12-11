@@ -3,16 +3,34 @@
 #include <fcntl.h>
 #include <stdlib.h>
 
+static char	*strjoin_free(char *s1, char *s2)
+{
+	char	*joined;
+
+	if (!s1 || !s2)
+		return (NULL);
+
+	joined = ft_strjoin(s1, s2);
+	free(s1);
+	return (joined);
+}
+
 char	*get_next_line(int fd)
 {
-	char	*line = NULL;
+	char	*line;
 	char	*buf;
 	int		readline;
-	char	*temp;
 
 	buf = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buf)
 		return (NULL);
+
+	line = ft_strdup("");
+	if (!line)
+	{
+		free(buf);
+		return (NULL);
+	}
 
 	readline = 1;
 	while (readline > 0)
@@ -21,14 +39,11 @@ char	*get_next_line(int fd)
 		if (readline == -1)
 		{
 			free(buf);
+			free(line);
 			return (NULL);
 		}
 		buf[readline] = '\0';
-		if (!line)
-			line = ft_strdup("");
-		temp = line;
-		line = ft_strjoin(temp, buf);
-		free(temp);
+		line = strjoin_free(line, buf);
 		if (ft_strchr(buf, '\n'))
 			break;
 	}
