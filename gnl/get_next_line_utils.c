@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: patyaowa <patyaowa@student.42Bangkok.co    +#+  +:+       +#+        */
+/*   By: patyaowa <patyaowa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 12:46:31 by patyaowa          #+#    #+#             */
-/*   Updated: 2023/11/10 14:47:25 by patyaowa         ###   ########.fr       */
+/*   Updated: 2024/01/06 14:04:03 by patyaowa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	*ft_strchr(const char *s, int c)
 		}
 		str++;
 	}
-	if (cha == '\0' && *str == '\0')
+	if (cha == '\0')
 		return (str);
 	return (NULL);
 }

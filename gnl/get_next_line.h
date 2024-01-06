@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: patyaowa <patyaowa@student.42Bangkok.co    +#+  +:+       +#+        */
+/*   By: patyaowa <patyaowa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 12:46:23 by patyaowa          #+#    #+#             */
-/*   Updated: 2023/11/10 14:38:19 by patyaowa         ###   ########.fr       */
+/*   Updated: 2024/01/06 13:59:53 by patyaowa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 #  define BUFFER_SIZE 1000
 # endif
 
-# include <stdlib.h>
-# include <unistd.h>
+#include <stdlib.h>
+#include <unistd.h>
 
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 unsigned int		ft_strlen(const char *str);
