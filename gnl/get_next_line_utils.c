@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: patyaowa <patyaowa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: patyaowa <patyaowa@student.42Bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 12:46:31 by patyaowa          #+#    #+#             */
-/*   Updated: 2024/01/06 14:04:03 by patyaowa         ###   ########.fr       */
+/*   Updated: 2024/01/07 19:37:30 by patyaowa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,8 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 		dst[i + j] = src[j];
 		j++;
 	}
-	dst[i + j] = '\0';
-	if (i > dstsize)
-		return (ft_strlen(src) + dstsize);
+	if (i + j < dstsize)
+		dst[i + j] = '\0';
 	return (i + ft_strlen(src));
 }
 
@@ -116,7 +115,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		return (NULL);
 
 	ft_strlcpy(str, s1, len1 + 1);
-	ft_strlcat(str + len1, s2, len2 + 1);
+	ft_strlcat(str + len1, s2, len1 + len2 + 1);
 
 	return (str);
 }
