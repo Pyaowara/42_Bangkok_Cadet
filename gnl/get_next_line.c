@@ -6,13 +6,21 @@
 /*   By: patyaowa <patyaowa@student.42Bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 13:52:05 by patyaowa          #+#    #+#             */
-/*   Updated: 2024/01/07 19:58:44 by patyaowa         ###   ########.fr       */
+/*   Updated: 2024/01/08 17:34:59 by patyaowa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 #include <fcntl.h>
 #include <stdio.h>
+
+static char	*ft_clear_backup(char **backup)
+{
+	if (backup)
+		free(*backup);
+	*backup = NULL;
+	return (NULL);
+}
 
 static char	*ft_read(int fd, char *buf, char **backup)
 {
@@ -24,24 +32,22 @@ static char	*ft_read(int fd, char *buf, char **backup)
 	{
 		check = read(fd, buf, BUFFER_SIZE);
 		if (check == -1)
-		{
-			free(*backup);
-			*backup = NULL;
-			return (NULL);
-		}
-		else if (check == 0)
-			break;
+			if (backup)
+				return (ft_clear_backup(&*backup));
+		if (check < 1)
+			break ;
 		buf[check] = '\0';
 		if (!(*backup))
 			*backup = ft_strdup("");
-
-			
 		temp = *backup;
 		*backup = ft_strjoin(temp, buf);
 		if (temp)
+		{
 			free(temp);
+			temp = NULL;
+		}
 		if (!(*backup))
-			return (NULL);
+			return (ft_clear_backup(&*backup));
 		if (ft_strchr(*backup, '\n'))
 			break ;
 	}
@@ -53,6 +59,8 @@ static char	*ft_get_new_line(char *line)
 	int		i;
 	char	*temp;
 
+	if (!line)
+		return (NULL);
 	i = 0;
 	while (line[i] != '\0' && line[i] != '\n')
 		i++;
@@ -80,15 +88,22 @@ static char	*ft_cut_line(char *line)
 	i = 0;
 	while (line[i] != '\0' && line[i] != '\n')
 		i++;
-	new = ft_substr(line, 0, i+1);
+	new = ft_strdup(line);
 	free(line);
-	return (new);
+	if (!new)
+		return (NULL);
+	line = ft_substr(new, 0, i + 1);
+	if (new)
+		free(new);
+	if (!line)
+		return (NULL);
+	return (line);
 }
+
 char	*get_next_line(int fd)
 {
 	char		*buf;
 	char		*line;
-	char		*out;
 	static char	*backup;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
@@ -97,28 +112,20 @@ char	*get_next_line(int fd)
 	if (!buf)
 	{
 		if (backup)
-		{
-			free(backup);
-			backup = NULL;
-		}
+			return (ft_clear_backup(&backup));
 		return (NULL);
 	}
 	line = ft_read(fd, buf, &backup);
 	free(buf);
+	backup = ft_get_new_line(line);
+	line = ft_cut_line(line);
 	if (!line)
 	{
 		if (backup)
-		{
-			free(backup);
-			backup = NULL;
-		}
+			return (ft_clear_backup(&backup));
 		return (NULL);
 	}
-	backup = ft_get_new_line(line);
-	out = ft_cut_line(line);
-	if (out && out[0] == '\0')
-		free(out);
-	return (out);
+	return (line);
 }
 
 // #include <fcntl.h>
