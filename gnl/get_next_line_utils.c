@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: patyaowa <patyaowa@student.42Bangkok.co    +#+  +:+       +#+        */
+/*   By: patyaowa <patyaowa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 12:46:31 by patyaowa          #+#    #+#             */
-/*   Updated: 2024/01/08 17:41:18 by patyaowa         ###   ########.fr       */
+/*   Updated: 2024/01/09 12:51:46 by patyaowa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,69 +50,31 @@ char	*ft_strdup(const char *s1)
 	return (s2);
 }
 
-size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
-{
-	size_t	i;
-	size_t	j;
-
-	i = ft_strlen(dst);
-	j = 0;
-	if (dstsize == 0)
-	{
-		while (src[j])
-			j++;
-		return (j);
-	}
-	while (i + j < dstsize - 1 && src[j])
-	{
-		dst[i + j] = src[j];
-		j++;
-	}
-	if (i + j < dstsize)
-		dst[i + j] = '\0';
-	return (i + ft_strlen(src));
-}
-
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
-{
-	size_t	i;
-
-	i = 0;
-	if (dstsize == 0)
-	{
-		while (src[i])
-			i++;
-		return (i);
-	}
-	while (src[i] && i < dstsize - 1)
-	{
-		dst[i] = src[i];
-		i++;
-	}
-	if (i < dstsize)
-	{
-		dst[i] = '\0';
-	}
-	while (src[i] != '\0')
-		i++;
-	return (i);
-}
-
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	size_t	len1;
-	size_t	len2;
 	char	*str;
+	int		i;
+	int		j;
 
+	i = 0;
+	j = 0;
 	if (!s1 || !s2)
 		return (NULL);
-	len1 = ft_strlen(s1);
-	len2 = ft_strlen(s2);
-	str = (char *)malloc((len1 + len2 + 1) * sizeof(char));
+	str = (char *)malloc(sizeof(char) * ft_strlen(s1) + ft_strlen(s2) + 1);
 	if (!str)
 		return (NULL);
-	ft_strlcpy(str, s1, len1 + 1);
-	ft_strlcat(str + len1, s2, len1 + len2 + 1);
+	while (s1[i])
+	{
+		str[i] = s1[i];
+		i++;
+	}
+	while (s2[j])
+	{
+		str[i] = s2[j];
+		j++;
+		i++;
+	}
+	str[i] = '\0';
 	return (str);
 }
 

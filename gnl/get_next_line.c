@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: patyaowa <patyaowa@student.42Bangkok.co    +#+  +:+       +#+        */
+/*   By: patyaowa <patyaowa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 13:52:05 by patyaowa          #+#    #+#             */
-/*   Updated: 2024/01/08 17:34:59 by patyaowa         ###   ########.fr       */
+/*   Updated: 2024/01/09 12:58:01 by patyaowa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,7 @@ static char	*ft_read(int fd, char *buf, char **backup)
 		temp = *backup;
 		*backup = ft_strjoin(temp, buf);
 		if (temp)
-		{
-			free(temp);
-			temp = NULL;
-		}
+			ft_clear_backup(&temp);
 		if (!(*backup))
 			return (ft_clear_backup(&*backup));
 		if (ft_strchr(*backup, '\n'))
