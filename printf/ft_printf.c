@@ -6,7 +6,7 @@
 /*   By: patyaowa <patyaowa@student.42Bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 15:36:01 by patyaowa          #+#    #+#             */
-/*   Updated: 2024/02/06 18:08:15 by patyaowa         ###   ########.fr       */
+/*   Updated: 2024/02/06 19:56:52 by patyaowa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,17 @@ int	ft_check(va_list *args, char type)
 	print_len = 0;
 	if (type == 'c')
 		print_len += ft_putchar(va_arg(*args, int));
-	if (type == 's')
+	else if (type == 's')
 		print_len += ft_putstr(va_arg(*args, char *));
-	if (type == 'p')
-		print_len += ft_putptr(va_arg(*args, size_t));
-	if (type == 'd' || type == 'i')
-		print_len += ft_putnbr(va_arg(*args, int));
-	if (type == 'u')
-		print_len += ft_putunbr(va_arg(*args, unsigned int));
-	if (type == 'x' || type == 'X')
-		print_len += ft_puthex(va_arg(*args, unsigned int), type);
-	if (type == '%')
+	else if (type == 'p')
+		print_len += ft_putnbr_base(va_arg(*args, size_t), "0123456789abcdef");
+	else if (type == 'd' || type == 'i')
+		print_len += ft_putnbr_base(va_arg(*args, int), "0123456789");
+	else if (type == 'u')
+		print_len += ft_putnbr_base(va_arg(*args, unsigned int), "0123456789");
+	else if (type == 'x' || type == 'X')
+		print_len += ft_putnbr_base(va_arg(*args, unsigned int), "0123456789abcdef");
+	else if (type == '%')
 		print_len += ft_putchar('%');
 	return (print_len);
 }

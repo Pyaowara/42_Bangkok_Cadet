@@ -6,12 +6,15 @@
 /*   By: patyaowa <patyaowa@student.42Bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 18:05:23 by patyaowa          #+#    #+#             */
-/*   Updated: 2024/02/06 18:08:03 by patyaowa         ###   ########.fr       */
+/*   Updated: 2024/02/06 19:59:29 by patyaowa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include <stdio.h>
 
 int	main(){
-	ft_printf("Hello World %s", "Mother f");
+	char * str = "Hello";
+	printf("%x\n", str);
+	ft_printf("%x", str);
 }

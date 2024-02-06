@@ -6,7 +6,7 @@
 /*   By: patyaowa <patyaowa@student.42Bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 15:36:01 by patyaowa          #+#    #+#             */
-/*   Updated: 2024/02/06 18:07:24 by patyaowa         ###   ########.fr       */
+/*   Updated: 2024/02/06 20:02:50 by patyaowa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,17 @@ int	ft_putstr(char *s)
 int	ft_putnbr_base(int n, char *base)
 {
 	int	base_size;
-	int	nbr[11];
+	int	nbr[100];
 	int	i;
 	int	k;
 
 	i = 0;
 	k = 0;
 	base_size = ft_strlen(base);
+	// if (type == 'p')
+	// 	write()
+	// if (!n)
+	// 	write(1, "0", 1);
 	if (n < 0)
 	{
 		n = -n;
