@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: patyaowa <patyaowa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: patyaowa <patyaowa@student.42Bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 15:36:01 by patyaowa          #+#    #+#             */
-/*   Updated: 2024/02/08 15:50:59 by patyaowa         ###   ########.fr       */
+/*   Updated: 2024/02/08 17:24:31 by patyaowa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,14 @@ int	ft_check(va_list *args, char type)
 	else if (type == 'd' || type == 'i')
 		print_len += ft_putnbr(va_arg(*args, int), "0123456789");
 	else if (type == 'u')
-		print_len += ft_putstnbr_base(va_arg(*args, unsigned int), "0123456789");
+		print_len += ft_putstnbr_base(\
+		va_arg(*args, unsigned int), "0123456789");
 	else if (type == 'x')
-		print_len += ft_putstnbr_base(va_arg(*args, unsigned int), "0123456789abcdef");
+		print_len += ft_putstnbr_base(\
+		va_arg(*args, unsigned int), "0123456789abcdef");
 	else if (type == 'X')
-		print_len += ft_putstnbr_base(va_arg(*args, unsigned int), "0123456789ABCDEF");
+		print_len += ft_putstnbr_base(\
+		va_arg(*args, unsigned int), "0123456789ABCDEF");
 	else if (type == '%')
 		print_len += ft_putchar('%');
 	return (print_len);

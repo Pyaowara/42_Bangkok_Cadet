@@ -1,6 +1,6 @@
 NAME = libftprintf.a
 INC = ft_printf.h
-SRCS = ft_printf.c ft_printf_utils.c
+SRCS = ft_printf.c ft_printf_utils.c libft.c
 CC = gcc
 FLAG = -Wall -Wextra -Werror
 OBJ = $(SRCS:.c=.o)

@@ -1,28 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   libft.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: patyaowa <patyaowa@student.42Bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/06 16:41:06 by patyaowa          #+#    #+#             */
-/*   Updated: 2024/02/08 17:18:24 by patyaowa         ###   ########.fr       */
+/*   Created: 2024/02/08 17:21:57 by patyaowa          #+#    #+#             */
+/*   Updated: 2024/02/08 17:26:06 by patyaowa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "ft_printf.h"
 
-# include <stdarg.h>
-# include <unistd.h>
+int	ft_strlen(const char *s)
+{
+	int	i;
 
-int	ft_printf(const char *str, ...);
-int	ft_check(va_list *args, char type);
-int	ft_strlen(const char *s);
-int	ft_putstr(char *s);
-int	ft_putchar(char c);
-int	ft_putnbr(int n, char *base);
-int	ft_putnbr_base(int n, char *base);
-int	ft_putptr(size_t n, char *base);
-int	ft_putstnbr_base(size_t n, char *base);
-#endif
+	i = 0;
+	while (s[i])
+	{
+		i++;
+	}
+	return (i);
+}
+
+int	ft_putchar(char c)
+{
+	write(1, &c, 1);
+	return (1);
+}
+
+int	ft_putstr(char *s)
+{
+	if (s)
+		return (write(1, s, ft_strlen(s)));
+	write(1, "(null)", 6);
+	return (6);
+}
