@@ -13,6 +13,6 @@ clean:
 	rm -rf $(OBJ)
 
 fclean: clean
-	rm -rf $(NAME) $(OBJ)
+	rm -rf $(NAME) $(OBJ) *.out
 
 re: fclean all
